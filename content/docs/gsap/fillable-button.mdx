@@ -1,17 +1,23 @@
 ---
 title: Fillable Button
-description: A button with dynamic text that falls into place with a smooth, elastic motion on hover or click.
+description: A button with a liquid fill effect that follows the cursor on hover.
 ---
 
 <DemoPreview name="gsap-fillable-button" />
+
+## Examples
+
+### Variants
+
+<DemoPreview demoPath="demo/gsap/fillable-button/variants.tsx" />
 
 ## Props
 
 ### FillableButton
 
-| Prop             | Type    | Default        |
-| ---------------- | ------- | -------------- |
-| variant          | string  | `"hover"`      |
-| overlayClassname | string  | —              |
+| Prop             | Type                                                              | Default     |
+| ---------------- | ----------------------------------------------------------------- | ----------- |
+| variant          | `"default" \| "outline" \| "destructive" \| "secondary" \| "ghost" \| "link"` | `"default"` |
+| overlayClassname | string                                                            | —           |
 
 <span className="text-muted-foreground">Inspired by Josh Dillon's work</span>

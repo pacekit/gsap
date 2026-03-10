@@ -6,25 +6,41 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
+const overlayVariants = cva(
+  "pointer-events-none absolute left-0 top-0 block aspect-square w-[170%] -translate-x-1/2 -translate-y-1/2 rounded-full",
+  {
+    variants: {
+      variant: {
+        default: "bg-zinc-700",
+        outline: "bg-zinc-500 dark:bg-zinc-400",
+        destructive: "bg-destructive",
+        secondary: "bg-zinc-700 dark:bg-zinc-300",
+        ghost: "bg-muted",
+        link: "",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
+
 const buttonVariants = cva(
   "cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        link: "text-primary underline-offset-4 hover:underline",
-        hover:
+        default:
           "relative bg-zinc-950 dark:bg-zinc-50 text-white dark:text-zinc-950 dark:hover:text-white overflow-hidden rounded-full! px-6 py-3.5 tracking-tight after:absolute after:inset-0 after:rounded-full after:pointer-events-none after:content-['']",
-        hoverOutline:
+        outline:
           "relative overflow-hidden rounded-full! bg-transparent text-foreground px-6 py-3.5 tracking-tight hover:text-background after:absolute after:inset-0 after:rounded-full after:border-2 after:border-zinc-500 after:pointer-events-none after:content-[''] dark:after:border-zinc-400",
+        destructive:
+          "relative bg-red-300 dark:bg-red-800 text-red-900 dark:text-red-100 hover:text-white dark:hover:text-white overflow-hidden rounded-full! px-6 py-3.5 tracking-tight",
+        secondary:
+          "relative bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-200 hover:text-white dark:hover:text-zinc-950 overflow-hidden rounded-full! px-6 py-3.5 tracking-tight",
+        ghost:
+          "relative bg-transparent text-foreground hover:text-accent-foreground overflow-hidden rounded-full! px-6 py-3.5 tracking-tight",
+        link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
@@ -38,7 +54,7 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "hover",
+      variant: "default",
       size: "default",
     },
   },
@@ -46,7 +62,7 @@ const buttonVariants = cva(
 
 function FillableButton({
   className,
-  variant = "hover",
+  variant = "default",
   size = "default",
   children,
   overlayClassname,
@@ -58,7 +74,7 @@ function FillableButton({
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const flairRef = React.useRef<HTMLSpanElement>(null);
 
-  const isHoverVariant = variant === "hover" || variant === "hoverOutline";
+  const isHoverVariant = variant !== "link";
 
   React.useEffect(() => {
     if (!isHoverVariant) return;
@@ -145,7 +161,6 @@ function FillableButton({
     };
   }, [isHoverVariant, variant]);
 
-  if (isHoverVariant) {
     return (
       <button
         ref={buttonRef}
@@ -157,35 +172,15 @@ function FillableButton({
       >
         <span
           ref={flairRef}
-          className={cn(
-            "pointer-events-none absolute inset-0 origin-top-left scale-0 will-change-transform",
-            "before:pointer-events-none before:absolute before:left-0 before:top-0 before:block before:aspect-square before:w-[170%]",
-            "before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-zinc-600 before:content-['']",
-            variant === "hover" && "before:bg-primary",
-            variant === "hoverOutline" &&
-              "before:bg-zinc-500 dark:before:bg-zinc-400",
-            overlayClassname,
-          )}
-        />
+          className="pointer-events-none absolute inset-0 origin-top-left scale-0 will-change-transform"
+        >
+          <span className={cn(overlayVariants({ variant }), overlayClassname)} />
+        </span>
         <span className="relative z-10 flex items-center gap-2">
           {children}
         </span>
       </button>
     );
-  }
-
-  return (
-    <button
-      ref={buttonRef}
-      data-slot="button"
-      data-variant={variant}
-      data-size={size}
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    >
-      {children}
-    </button>
-  );
 }
 
 export { FillableButton, buttonVariants };
