@@ -3,7 +3,7 @@ title: Fillable Button
 description: A button with a liquid fill effect that follows the cursor on hover.
 ---
 
-<DemoPreview name="gsap-fillable-button" />
+<DemoPreview name="fillable-button" />
 
 ## Examples
 
@@ -35,6 +35,21 @@ description: A button with a liquid fill effect that follows the cursor on hover
 
 <DemoPreview demoPath="demo/gsap/fillable-button/variant-link.tsx" />
 
+## Usage
+
+<CodeViewer files={[{
+    path: "index.tsx",
+    code: `
+import { FillableButton } from "@/components/gsap/fillable-button"
+
+export default function Home() {
+    return (
+        <FillableButton>Click me</FillableButton>
+    )
+}`
+}]}/>
+
+
 ## Customizing
 
 ### Custom Overlay Color
@@ -42,16 +57,6 @@ description: A button with a liquid fill effect that follows the cursor on hover
 Use `overlayClassname` to replace the fill color with any Tailwind background class.
 
 <DemoPreview demoPath="demo/gsap/fillable-button/custom-overlay.tsx" />
-
-## Usage
-
-```tsx
-import { FillableButton } from "@/components/gsap/fillable-button"
-```
-
-```tsx
-<FillableButton>Click me</FillableButton>
-```
 
 ### Icon
 
