@@ -18,12 +18,12 @@ function RouteComponent() {
                 target="_blank"
                 className="bg-muted group flex h-8 w-full items-center justify-center">
                 <span className="max-md:hidden">
-                    <span className="font-medium text-blue-500 group-hover:underline">Introducing PaceKit UI:</span>{" "}
+                    <span className="font-medium text-blue-500 group-hover:underline">Introducing PaceKit UI</span> -
                     Build faster with practical UI blocks for real apps
                 </span>
                 <span className="md:hidden">
-                    <span className="font-medium text-blue-500 group-hover:underline">PaceKit UI:</span> Blocks for real
-                    apps
+                    <span className="font-medium text-blue-500 group-hover:underline">PaceKit UI</span> - Blocks for
+                    real apps
                 </span>
             </a>
             <div className="bg-background/90 sticky top-0 z-10 border-b border-dashed backdrop-blur-md">

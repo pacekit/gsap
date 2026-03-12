@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-import { useSearchContext } from "@fumadocs/base-ui/contexts/search";
+import { useSearchContext } from "fumadocs-ui/contexts/search";
 import { CommandIcon, SearchIcon } from "lucide-react";
 
 import { Links } from "@/lib/links";

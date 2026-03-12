@@ -1,7 +1,7 @@
 {
     "$schema": "https://ui.shadcn.com/schema/registry.json",
-    "name": "PaceKit UI",
-    "homepage": "https://ui.pacekit.dev",
+    "name": "PaceKit GSAP",
+    "homepage": "https://gsap.pacekit.dev",
     "items": [
         {
             "name": "index",
