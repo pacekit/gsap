@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-import { publicRegistries } from "@/lib/registry/generated/public";
+import { registries } from "@/lib/registry/data";
 import { cn } from "@/lib/utils";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -55,13 +55,13 @@ const ExampleViewer = ({ demoPath, filePaths = [], full = false, installationCom
 
 export const DemoPreview = ({ name, ...props }: Props) => {
     const { demoPath, filePaths, installationCommand } = useMemo(() => {
-        const generatedContent = publicRegistries.find((item) => item.name === name);
+        const generatedContent = registries.find((item) => item.name === name);
 
         if (!generatedContent) return {};
 
         return {
-            demoPath: generatedContent?.paths[0],
-            filePaths: generatedContent?.paths.slice(1),
+            demoPath: generatedContent?.demoPath,
+            filePaths: generatedContent?.files?.map((file) => file.path) ?? [],
             installationCommand: `npx shadcn@latest add @pacekit/${generatedContent.name}`,
         };
     }, [name]);

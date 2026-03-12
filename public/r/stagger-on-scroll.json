@@ -1,0 +1,15 @@
+{
+    "name": "stagger-on-scroll",
+    "title": "Stagger on Scroll",
+    "description": "Stagger elements into view with scroll-triggered fade, slide, zoom, or blur effects.",
+    "type": "registry:ui",
+    "dependencies": ["gsap", "@gsap/react"],
+    "files": [
+        {
+            "path": "components/gsap/stagger-on-scroll.tsx",
+            "type": "registry:ui",
+            "target": "~/components/gsap/stagger-on-scroll.tsx",
+            "content": "\"use client\";\n\nimport { ComponentProps, useRef } from \"react\";\n\nimport { useGSAP } from \"@gsap/react\";\nimport gsap from \"gsap\";\nimport { ScrollTrigger } from \"gsap/ScrollTrigger\";\n\ngsap.registerPlugin(ScrollTrigger);\n\ntype EffectType = \"scale\" | \"slideInRight\" | \"blur\" | \"random\";\n\ntype StaggerOnScrollProps = {\n    effect?: EffectType;\n} & ComponentProps<\"div\">;\n\nexport const StaggerOnScroll = ({ effect = \"scale\", ...props }: StaggerOnScrollProps) => {\n    const wrapperRef = useRef<HTMLDivElement | null>(null);\n\n    useGSAP(\n        () => {\n            if (!wrapperRef.current || !wrapperRef.current.children.length) return;\n\n            const animationPresets: Record<EffectType, gsap.TweenVars> = {\n                scale: {\n                    opacity: 0,\n                    scale: 0.9,\n                    duration: 0.8,\n                    stagger: 0.15,\n                    ease: \"power2.out\",\n                },\n                slideInRight: {\n                    opacity: 0,\n                    x: 80,\n                    duration: 1,\n                    stagger: 0.1,\n                    ease: \"back.out(1.4)\",\n                },\n                blur: {\n                    opacity: 0,\n                    filter: \"blur(10px)\",\n                    duration: 0.8,\n                    stagger: 0.12,\n                    ease: \"power2.out\",\n                },\n\n                random: {\n                    opacity: 0,\n                    x: () => gsap.utils.random(-100, 100),\n                    y: () => gsap.utils.random(-100, 100),\n                    duration: 0.9,\n                    stagger: 0.1,\n                    ease: \"power2.out\",\n                },\n            };\n\n            gsap.from(wrapperRef.current.children, {\n                ...animationPresets[effect],\n                scrollTrigger: {\n                    trigger: wrapperRef.current,\n                    start: \"top 85%\",\n                },\n            });\n        },\n        { scope: wrapperRef, dependencies: [effect] },\n    );\n\n    return <div {...props} ref={wrapperRef} />;\n};\n"
+        }
+    ]
+}

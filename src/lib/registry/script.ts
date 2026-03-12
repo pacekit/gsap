@@ -1,8 +1,8 @@
 import fs from "node:fs/promises";
-import path from "path";
+import path from "node:path";
 import { RegistryItem } from "shadcn/schema";
 
-import { publicRegistries } from "./data/public";
+import { registries } from "./data";
 
 const REGISTRY_PATH = path.join(process.cwd(), "public/r/");
 
@@ -11,8 +11,8 @@ const SOURCE_PATH = path.join(process.cwd(), "/src/");
 const buildMCP = async (registries: RegistryItem[]) => {
     const mcp = {
         $schema: "https://ui.shadcn.com/schema/registry.json",
-        name: "PaceKit UI",
-        homepage: "https://ui.pacekit.dev",
+        name: "PaceKit GSAP",
+        homepage: "https://gsap.pacekit.dev",
         items: [
             {
                 name: "index",
@@ -61,9 +61,9 @@ const buildRegistry = async (path: string, registries: RegistryItem[]) => {
 };
 
 const init = async () => {
-    const registries = publicRegistries.map(({ demoPath, ...registry }) => registry);
-    await buildRegistry(REGISTRY_PATH, registries);
-    await buildMCP(registries);
+    const _registries = registries.map(({ demoPath, ...registry }) => registry);
+    await buildRegistry(REGISTRY_PATH, _registries);
+    await buildMCP(_registries);
 };
 
 init().then(() => {

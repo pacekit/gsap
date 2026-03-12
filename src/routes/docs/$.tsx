@@ -2,48 +2,21 @@ import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { Suspense } from "react";
 
-
-
 import { findNeighbour } from "fumadocs-core/page-tree";
 import { useFumadocsLoader } from "fumadocs-core/source/client";
 import browserCollections from "fumadocs-mdx:collections/browser";
 import { ArrowLeftIcon, ArrowRightIcon, HomeIcon } from "lucide-react";
 
-
-
 import { source } from "@/features/docs/source";
-
-
+import { getHeadMeta } from "@/features/seo/meta";
 
 import { TOCAds } from "@/components/shared/docs/TOCAds";
 import { getMDXComponents } from "@/components/shared/docs/mdx";
 import { DocsTableOfContents } from "@/components/shared/docs/toc";
 import { Footer } from "@/components/shared/layouts/footer";
 import { Sidebar } from "@/components/shared/layouts/sidebar";
-import { Button } from "@/components/ui/button";
 import { Topbar } from "@/components/shared/layouts/topbar";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/docs/$")({
     component: Page,
@@ -53,11 +26,19 @@ export const Route = createFileRoute("/docs/$")({
         await clientLoader.preload(data.path);
         return data;
     },
+    head: ({ loaderData }) => {
+        return getHeadMeta({
+            title: loaderData?.title,
+            description: loaderData?.description,
+        });
+    },
 });
 
 type DocsPageData = {
     path: string;
     pageTree: any;
+    title: string;
+    description?: string;
     neighbours: {
         previous?: any;
         next?: any;
@@ -78,6 +59,8 @@ const serverLoader = createServerFn({
 
         return {
             path,
+            title: page.data.title,
+            description: page.data.description,
             pageTree,
             neighbours,
         };
@@ -170,7 +153,7 @@ const clientLoader = browserCollections.docs.createClientLoader({
                                     }></Button>
                             )}
                         </div>
-                        <Footer className="py-4 xl:py-8" />
+                        <Footer className="my-4 xl:my-8" />
                     </div>
                 </div>
                 <div className="sticky top-[calc(var(--header-height)+1px)] z-30 ml-auto hidden h-[90svh] w-44 flex-col gap-4 overflow-hidden overscroll-none pb-8 lg:flex 2xl:w-52">

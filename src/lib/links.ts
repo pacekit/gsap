@@ -5,6 +5,6 @@ export const Links = {
         discord: "https://pacekit.dev/discord",
         twitter: "https://x.com/pacekit_",
         twitterPersonal: "https://x.com/withden_",
-        ui: "https://ui.pacekit.dev"
+        ui: "https://ui.pacekit.dev",
     },
 };

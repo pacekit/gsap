@@ -32,9 +32,7 @@ export const FlipRevealDemo = () => {
 
     return (
         <div className="space-y-8">
-            <ToggleGroup
-                value={key}
-                onValueChange={onValueChange}>
+            <ToggleGroup value={key} onValueChange={onValueChange}>
                 <ToggleGroupItem value="shirt" className="w-full cursor-pointer sm:px-4">
                     Shirt
                 </ToggleGroupItem>

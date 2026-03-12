@@ -1,14 +1,8 @@
 import { Link } from "@tanstack/react-router";
 
-
-
 import { ArrowRightIcon, BlocksIcon, BookOpenTextIcon, ChevronRightIcon, ShapesIcon } from "lucide-react";
 
-
-
 import { Links } from "@/lib/links";
-
-
 
 import { GithubStarCounter } from "@/components/gsap/github-star-counter";
 import { RevealText } from "@/components/gsap/reveal-text";
@@ -16,29 +10,8 @@ import { SpringButton } from "@/components/gsap/spring-button";
 import { TiltCard } from "@/components/gsap/tilt-card";
 import { Button } from "@/components/ui/button";
 
-
-
 import { ProductDemo } from "./demos/product-demo";
 import { RevealTextDemo } from "./demos/reveal-text-demo";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export const Hero = () => {
     return (
@@ -47,7 +20,7 @@ export const Hero = () => {
                 <a
                     href={Links.external.ui}
                     className="flex items-center gap-2 rounded-full border py-1 ps-2.5 pe-3 text-sm hover:shadow">
-                    <BlocksIcon className="size-4 text-purple-500" />
+                    <BlocksIcon className="text-primary size-4" />
                     <p className="font-medium">Building Blocks</p>
                 </a>
                 <h1 className="mt-6 text-2xl leading-[1.15] font-[580] tracking-tight sm:text-4xl md:text-5xl 2xl:text-6xl">
@@ -65,17 +38,17 @@ export const Hero = () => {
                     gsapVars={{ stagger: 0.35 }}
                     splitTextVars={{ mask: "lines" }}
                     className="mt-4 sm:mt-6 lg:mt-8">
-                    <h2 className="text-foreground/90 text-sm tracking-tight sm:text-lg md:text-xl">
-                        Animated <span className="font-semibold">components</span> and design{" "}
-                        <span className="font-semibold">blocks</span> crafted for smooth interaction and rich detail.
-                        Copy, customise, and create without the extra setup.
+                    <h2 className="text-foreground/90 text-sm tracking-tight text-balance sm:text-lg md:text-xl">
+                        Animated <span className="font-semibold">GSAP components</span> crafted for smooth interaction
+                        and rich detail. Copy, customise, and create without the extra setup.
                     </h2>
                 </RevealText>
                 <div className="mt-6 flex flex-wrap justify-center gap-4 max-sm:items-center sm:mt-8 xl:mt-12 xl:gap-6 2xl:mt-16">
                     <Button
                         size="lg"
+                        nativeButton={false}
                         render={
-                            <Link to={"/docs/components" as string}>
+                            <Link to={"/docs/components/ai-modal-selector" as string}>
                                 <ShapesIcon className="size-5" />
                                 Components
                                 <ChevronRightIcon />
@@ -85,6 +58,7 @@ export const Hero = () => {
                     <Button
                         size="lg"
                         variant="ghost"
+                        nativeButton={false}
                         render={
                             <Link to={"/docs" as string}>
                                 <BookOpenTextIcon className="size-5" />
@@ -125,6 +99,7 @@ export const Hero = () => {
                             <Button
                                 variant="outline"
                                 size="sm"
+                                nativeButton={false}
                                 className="cursor-pointer shadow-none"
                                 render={
                                     <a href={Links.external.ui} target="_blank">

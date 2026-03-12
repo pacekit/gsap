@@ -1,0 +1,15 @@
+{
+    "name": "ai-suggestions",
+    "title": "AI Suggestions",
+    "description": "Get smart, real-time AI recommendations to refine and improve your work",
+    "type": "registry:ui",
+    "dependencies": ["gsap", "@gsap/react"],
+    "files": [
+        {
+            "path": "components/gsap/ai-suggestions.tsx",
+            "type": "registry:ui",
+            "target": "~/components/gsap/ai-suggestions.tsx",
+            "content": "\"use client\";\n\nimport { type ComponentProps, useRef } from \"react\";\n\nimport { useGSAP } from \"@gsap/react\";\nimport gsap from \"gsap\";\n\nimport { cn } from \"@/lib/utils\";\n\nimport { Button } from \"@/components/ui/button\";\nimport { ScrollArea, ScrollBar } from \"@/components/ui/scroll-area\";\n\nexport type AISuggestionsProps = ComponentProps<typeof ScrollArea> & {\n    show?: boolean;\n};\n\nexport const AISuggestions = ({ className, children, show = true, ...props }: AISuggestionsProps) => {\n    const containerRef = useRef<HTMLDivElement>(null);\n\n    useGSAP(\n        () => {\n            const el = containerRef.current;\n            if (!el) return;\n\n            if (show) {\n                gsap.to(el, {\n                    height: \"auto\",\n                    opacity: 1,\n                    filter: \"blur(0px)\",\n                    duration: 0.5,\n                    ease: \"power2.out\",\n                    pointerEvents: \"auto\",\n                });\n            } else {\n                gsap.to(el, {\n                    height: 0,\n                    opacity: 0,\n                    filter: \"blur(8px)\",\n                    duration: 0.5,\n                    ease: \"power2.in\",\n                    pointerEvents: \"none\",\n                });\n            }\n        },\n        { dependencies: [show] },\n    );\n\n    return (\n        <ScrollArea ref={containerRef} className=\"relative w-full overflow-x-auto whitespace-nowrap\" {...props}>\n            <div className={cn(\"relative flex w-max flex-nowrap items-center gap-2\", className)}>{children}</div>\n            <div className=\"from-background absolute end-0 top-0 h-full w-8 bg-linear-to-l to-transparent\"></div>\n            <ScrollBar className=\"hidden\" orientation=\"horizontal\" />\n        </ScrollArea>\n    );\n};\n\nexport type AISuggestionProps = ComponentProps<typeof Button> & {\n    suggestion?: string;\n};\n\nexport const AISuggestion = ({\n    suggestion,\n    variant = \"outline\",\n    size = \"sm\",\n    children,\n    ...props\n}: AISuggestionProps) => {\n    return (\n        <Button type=\"button\" size={size} variant={variant} {...props}>\n            {children || suggestion}\n        </Button>\n    );\n};\n"
+        }
+    ]
+}

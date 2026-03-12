@@ -1,0 +1,15 @@
+{
+    "name": "gradient-shadow",
+    "title": "Gradient Shadow",
+    "description": "Smooth horizontal gradient flow, creating a subtle glowing hover shadow effect.",
+    "type": "registry:ui",
+    "dependencies": ["gsap", "@gsap/react"],
+    "files": [
+        {
+            "path": "components/gsap/gradient-shadow.tsx",
+            "type": "registry:ui",
+            "target": "~/components/gsap/gradient-shadow.tsx",
+            "content": "\"use client\";\n\nimport { ReactNode, useEffect, useRef } from \"react\";\n\nimport { gsap } from \"gsap\";\n\ntype GradientShadowProps = {\n    colors?: string[];\n    children: ReactNode;\n};\n\nexport const GradientShadow = ({\n    colors = [\"#3b82f6\", \"#8b5cf6\", \"#ec4899\", \"#f97316\"],\n    children,\n}: GradientShadowProps) => {\n    const shadowRef = useRef<HTMLDivElement>(null);\n\n    useEffect(() => {\n        if (!shadowRef.current) return;\n        gsap.to(shadowRef.current, {\n            backgroundPosition: \"200% 0%\",\n            duration: 6,\n            ease: \"linear\",\n            repeat: -1,\n        });\n    }, []);\n\n    const gradient = `linear-gradient(90deg, ${colors.join(\", \")}, ${colors[0]})`;\n\n    return (\n        <div className=\"group relative inline-block\">\n            <div\n                ref={shadowRef}\n                className=\"pointer-events-none absolute -inset-1 -z-10 scale-0 rounded-xl opacity-0 blur-sm transition-all duration-300 group-hover:scale-100 group-hover:opacity-100\"\n                style={{\n                    backgroundImage: gradient,\n                    backgroundSize: \"300% 300%\",\n                    backgroundPosition: \"0% 0%\",\n                    willChange: \"background-position\",\n                }}\n            />\n            <div className=\"relative z-10\">{children}</div>\n        </div>\n    );\n};\n"
+        }
+    ]
+}

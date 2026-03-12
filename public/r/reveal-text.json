@@ -1,0 +1,15 @@
+{
+    "name": "reveal-text",
+    "title": "Reveal Text",
+    "description": "A smooth text reveals animation where each heading reveals related content on interaction.",
+    "type": "registry:ui",
+    "dependencies": ["gsap", "@gsap/react"],
+    "files": [
+        {
+            "path": "components/gsap/reveal-text.tsx",
+            "type": "registry:ui",
+            "target": "~/components/gsap/reveal-text.tsx",
+            "content": "\"use client\";\n\nimport { ComponentProps, useMemo, useRef } from \"react\";\n\nimport { useGSAP } from \"@gsap/react\";\nimport gsap from \"gsap\";\nimport { SplitText } from \"gsap/SplitText\";\n\ntype SplitType = \"chars\" | \"words\" | \"lines\";\n\ntype RevealTextProps = {\n    type?: SplitType;\n    gsapVars?: gsap.TweenVars;\n    splitTextVars?: Partial<SplitText.Vars>;\n} & ComponentProps<\"div\">;\n\nconst defaultGsapVars: Record<SplitType, gsap.TweenVars> = {\n    chars: {\n        x: 150,\n        opacity: 0,\n        duration: 0.7,\n        ease: \"power3\",\n        stagger: 0.05,\n    },\n    words: {\n        x: 150,\n        opacity: 0,\n        ease: \"power3\",\n        duration: 1,\n        stagger: 0.2,\n        y: -100,\n        rotation: \"random(-80, 80)\",\n    },\n    lines: {\n        duration: 1,\n        yPercent: 100,\n        opacity: 0,\n        stagger: 0.4,\n        ease: \"expo.out\",\n    },\n};\n\nexport const RevealText = ({ type = \"chars\", gsapVars = {}, splitTextVars = {}, ...props }: RevealTextProps) => {\n    const wrapperRef = useRef<HTMLDivElement | null>(null);\n\n    const splitType = useMemo(\n        () =>\n            ({\n                chars: \"chars,words,lines\",\n                words: \"words,lines\",\n                lines: \"lines\",\n            })[type],\n        [type],\n    );\n\n    useGSAP(\n        () => {\n            const element = wrapperRef.current;\n            if (!element) return;\n\n            const splitText = SplitText.create(element, { type: splitType, ...splitTextVars });\n            gsap.from(splitText[type], {\n                ...defaultGsapVars[type],\n                ...gsapVars,\n            });\n        },\n        { scope: wrapperRef },\n    );\n\n    return <div {...props} ref={wrapperRef} />;\n};\n"
+        }
+    ]
+}

@@ -12,72 +12,7 @@
             "files": []
         },
         {
-            "name": "blocks-stats-simple-metric",
-            "title": "Simple Metric Stat",
-            "description": "A compact layout that highlights essential data for quick understanding.",
-            "type": "registry:block",
-            "files": [
-                {
-                    "path": "components/blocks/stats/simple-metric-stat.tsx",
-                    "type": "registry:block",
-                    "target": "~/components/blocks/stats/simple-metric-stat.tsx"
-                }
-            ]
-        },
-        {
-            "name": "blocks-stats-rich-metric",
-            "title": "Rich Metric Stat",
-            "description": "A detailed layout that adds context and visual trends for deeper insights.",
-            "type": "registry:block",
-            "files": [
-                {
-                    "path": "components/blocks/stats/rich-metric-stat.tsx",
-                    "type": "registry:block",
-                    "target": "~/components/blocks/stats/rich-metric-stat.tsx"
-                }
-            ]
-        },
-        {
-            "name": "blocks-charts-simple-metric",
-            "title": "Simple Metric Chart",
-            "description": "A straightforward chart for displaying key values at a glance.",
-            "type": "registry:block",
-            "files": [
-                {
-                    "path": "components/blocks/charts/simple-metric-chart.tsx",
-                    "type": "registry:block",
-                    "target": "~/components/blocks/charts/simple-metric-chart.tsx"
-                }
-            ]
-        },
-        {
-            "name": "blocks-charts-interactive-visual",
-            "title": "Interactive Visual Chart",
-            "description": "An interactive chart that helps explore patterns and trends.",
-            "type": "registry:block",
-            "files": [
-                {
-                    "path": "components/blocks/charts/interactive-visual-chart.tsx",
-                    "type": "registry:block",
-                    "target": "~/components/blocks/charts/interactive-visual-chart.tsx"
-                }
-            ]
-        },
-        {
-            "name": "blocks-charts-interactive-insight",
-            "title": "Interactive Insight Chart",
-            "description": "A data-rich chart focused on deeper analysis and user interaction.",
-            "type": "registry:block",
-            "files": [
-                {
-                    "path": "components/blocks/charts/interactive-insight-chart.tsx",
-                    "type": "registry:block",
-                    "target": "~/components/blocks/charts/interactive-insight-chart.tsx"
-                }
-            ]
-        },
-        {
-            "name": "gsap-ai-suggestions",
+            "name": "ai-suggestions",
             "title": "AI Suggestions",
             "description": "Get smart, real-time AI recommendations to refine and improve your work",
             "type": "registry:ui",
@@ -91,7 +26,7 @@
             ]
         },
         {
-            "name": "gsap-ai-modal-selector",
+            "name": "ai-modal-selector",
             "title": "Modal Selector",
             "description": "AI-focused model selector with preview, tooltips, and capability indicators built-in",
             "type": "registry:ui",
@@ -106,12 +41,12 @@
             ]
         },
         {
-            "name": "gsap-ai-modal-ability-selector",
+            "name": "ai-modal-ability-selector",
             "title": "Modal Ability Selector",
             "description": "Compact selector for toggling abilities with icons and custom styles",
             "type": "registry:ui",
             "dependencies": ["gsap", "@gsap/react"],
-            "registryDependencies": ["@pacekit/gsap-swap", "button", "dropdown-menu", "tooltip"],
+            "registryDependencies": ["@pacekit-gsap/swap", "button", "dropdown-menu", "tooltip"],
             "files": [
                 {
                     "path": "components/gsap/ai-modal-ability-selector.tsx",
@@ -121,7 +56,7 @@
             ]
         },
         {
-            "name": "gsap-ai-response-writer",
+            "name": "ai-response-writer",
             "title": "Response Writer",
             "description": "An auto-scrolling text display that smoothly keeps the latest response always visible",
             "type": "registry:ui",
@@ -136,7 +71,7 @@
             ]
         },
         {
-            "name": "gsap-ai-token-counter",
+            "name": "ai-token-counter",
             "title": "Modal Ability Selector",
             "description": "Compact selector for toggling abilities with icons and custom styles",
             "type": "registry:ui",
@@ -150,7 +85,7 @@
             ]
         },
         {
-            "name": "gsap-reveal-text",
+            "name": "reveal-text",
             "title": "Reveal Text",
             "description": "A smooth text reveals animation where each heading reveals related content on interaction.",
             "type": "registry:ui",
@@ -164,7 +99,7 @@
             ]
         },
         {
-            "name": "gsap-scramble-text",
+            "name": "scramble-text",
             "title": "Scramble Text",
             "description": "A hover-triggered text effect that scrambles and restores characters with smooth motion",
             "type": "registry:ui",
@@ -178,7 +113,7 @@
             ]
         },
         {
-            "name": "gsap-squash-text",
+            "name": "squash-text",
             "title": "Squash Text",
             "description": "Characters bounce and squash into place with playful, dynamic energy.",
             "type": "registry:ui",
@@ -192,7 +127,7 @@
             ]
         },
         {
-            "name": "gsap-bouncing-text",
+            "name": "bouncing-text",
             "title": "Bouncing Text",
             "description": "A playful animation where characters bounce in sequence across the text.",
             "type": "registry:ui",
@@ -206,7 +141,7 @@
             ]
         },
         {
-            "name": "gsap-draw-line-text",
+            "name": "draw-line-text",
             "title": "Draw Line Text",
             "description": "A smooth text effect that draws characters as strokes and fills them in—perfect for headers and highlights.",
             "type": "registry:ui",
@@ -220,7 +155,7 @@
             ]
         },
         {
-            "name": "gsap-mouse-wave-text",
+            "name": "mouse-wave-text",
             "title": "Mouse Wave Text",
             "description": "Creates a wave-like bounce effect on text as the mouse moves across",
             "type": "registry:ui",
@@ -234,7 +169,7 @@
             ]
         },
         {
-            "name": "gsap-text-fall-button",
+            "name": "text-fall-button",
             "title": "Text Fall Button",
             "description": "A button with dynamic text that falls into place with a smooth, elastic motion on hover or click.",
             "type": "registry:ui",
@@ -248,7 +183,7 @@
             ]
         },
         {
-            "name": "gsap-spring-button",
+            "name": "spring-button",
             "title": "Spring Button",
             "description": "A button that shrinks on press and springs back with bounce.",
             "type": "registry:ui",
@@ -262,7 +197,7 @@
             ]
         },
         {
-            "name": "gsap-swap",
+            "name": "swap",
             "title": "Swap",
             "description": "A flexible swap component that animates content changes with smooth customizable transition effects.",
             "type": "registry:ui",
@@ -272,7 +207,7 @@
             ]
         },
         {
-            "name": "gsap-animated-stack",
+            "name": "animated-stack",
             "title": "Animated Stack",
             "description": "A smooth stacked card component that expands on hover and collapses with animation.",
             "type": "registry:ui",
@@ -286,7 +221,7 @@
             ]
         },
         {
-            "name": "gsap-layered-stack",
+            "name": "layered-stack",
             "title": "Layered Stack",
             "description": "An interactive component that dynamically layers elements, creating a visually engaging stacked animation effect.",
             "type": "registry:ui",
@@ -300,7 +235,7 @@
             ]
         },
         {
-            "name": "gsap-gradient-shadow",
+            "name": "gradient-shadow",
             "title": "Gradient Shadow",
             "description": "Smooth horizontal gradient flow, creating a subtle glowing hover shadow effect.",
             "type": "registry:ui",
@@ -314,11 +249,11 @@
             ]
         },
         {
-            "name": "gsap-github-star-counter",
+            "name": "github-star-counter",
             "title": "GitHub Star Counter",
             "description": "Display live GitHub star count for any public repository",
             "type": "registry:ui",
-            "registryDependencies": ["@pacekit/gsap-rolling-number"],
+            "registryDependencies": ["@pacekit-gsap/rolling-number"],
             "files": [
                 {
                     "path": "components/gsap/github-star-counter.tsx",
@@ -328,7 +263,7 @@
             ]
         },
         {
-            "name": "gsap-profile-peek",
+            "name": "profile-peek",
             "title": "Profile Peek",
             "description": "Hover to peek profile with smooth reveal, right from the image.",
             "type": "registry:ui",
@@ -342,7 +277,7 @@
             ]
         },
         {
-            "name": "gsap-flip-reveal",
+            "name": "flip-reveal",
             "title": "Flip Reveal",
             "description": "Animated container that reveals or hides items using GSAP Flip transitions and keys.",
             "type": "registry:ui",
@@ -356,7 +291,7 @@
             ]
         },
         {
-            "name": "gsap-reveal-on-scroll",
+            "name": "reveal-on-scroll",
             "title": "Reveal On Scroll",
             "description": "Animate content into view on scroll with effects like fade, slide, zoom, and blur.",
             "type": "registry:ui",
@@ -370,7 +305,7 @@
             ]
         },
         {
-            "name": "gsap-stagger-on-scroll",
+            "name": "stagger-on-scroll",
             "title": "Stagger on Scroll",
             "description": "Stagger elements into view with scroll-triggered fade, slide, zoom, or blur effects.",
             "type": "registry:ui",
@@ -384,7 +319,7 @@
             ]
         },
         {
-            "name": "gsap-liquid-cursor",
+            "name": "liquid-cursor",
             "title": "Liquid Cursor",
             "description": "A smooth, fluid cursor that follows your mouse with gentle stretch and bounce effects.",
             "type": "registry:ui",
@@ -398,7 +333,7 @@
             ]
         },
         {
-            "name": "gsap-liquid-glass",
+            "name": "liquid-glass",
             "title": "Liquid Glass",
             "description": "A smooth glass effect with subtle blur, ideal for UI highlights and overlays.",
             "type": "registry:ui",
@@ -412,7 +347,7 @@
             ]
         },
         {
-            "name": "gsap-tilt-card",
+            "name": "tilt-card",
             "title": "Tilt Card",
             "description": "Interactive 3D tilt card that responds to cursor, adds depth and motion",
             "type": "registry:ui",
@@ -426,7 +361,7 @@
             ]
         },
         {
-            "name": "gsap-dot-loader",
+            "name": "dot-loader",
             "title": "Dot Loader",
             "description": "A compact 7x7 dot grid loader with smooth animation to visualize frame sequences or loading states in your app.",
             "type": "registry:ui",
@@ -439,12 +374,12 @@
             ]
         },
         {
-            "name": "gsap-dot-flow",
+            "name": "dot-flow",
             "title": "Dot Flow",
             "description": "Visually expressive status updates with animated dots and smooth sliding text transitions.",
             "type": "registry:ui",
             "dependencies": ["gsap", "@gsap/react"],
-            "registryDependencies": ["@pacekit/gsap-dot-loader"],
+            "registryDependencies": ["@pacekit-gsap/dot-loader"],
             "files": [
                 {
                     "path": "components/gsap/dot-flow.tsx",

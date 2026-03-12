@@ -29,7 +29,7 @@ description: How to install dependencies and organize your app structure.
     ...
     "registries": {
         /* [!code ++:1] */
-        "@pacekit": "https://ui.pacekit.dev/r/{name}.json"
+        "@pacekit-gsap": "https://gsap.pacekit.dev/r/{name}.json"
     }
 }`
 }]}/>
@@ -39,14 +39,13 @@ description: How to install dependencies and organize your app structure.
     </Step>
     You’re ready to start adding components to your project
 
-    <InstallationViewer command="npx shadcn@latest add @pacekit/text-reveal"/>
+    <InstallationViewer command="npx shadcn@latest add @pacekit-gsap/text-reveal"/>
 
     The command above will add the `TextReveal` component to your project. You can then import it using the following syntax:
 
     <CodeViewer files={[{
         path: "index.tsx",
         code: `
-
 import { TextReveal } from "@/components/gsap/text-reveal";
 
 export default function Home() {

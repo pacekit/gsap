@@ -38,7 +38,7 @@ function RouteComponent() {
                     <Demo />
                 </div>
             </div>
-            <div className="bg-background/90 sticky xl:mt-16 mt-8 top-0 z-10 border-t border-dashed">
+            <div className="bg-background/90 sticky top-0 z-10 mt-8 border-t border-dashed xl:mt-16">
                 <Footer className="container" />
             </div>
         </div>

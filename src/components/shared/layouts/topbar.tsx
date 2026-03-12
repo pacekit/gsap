@@ -22,10 +22,10 @@ export const Topbar = () => {
                 <div className="md:hidden">
                     <MobileNav />
                 </div>
-                {/*<Link to="/">*/}
-                {/*    <Logo />*/}
-                {/*    <span className="sr-only">PaceKit</span>*/}
-                {/*</Link>*/}
+                <Link to="/">
+                    <Logo />
+                    <span className="sr-only">PaceKit</span>
+                </Link>
                 <div className="ms-4">
                     <Button
                         variant="outline"

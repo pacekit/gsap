@@ -1,30 +1,11 @@
 import { ComponentProps } from "react";
 
-
-
 import { Links } from "@/lib/links";
 import { cn } from "@/lib/utils";
 
-
-
 import { Button } from "@/components/ui/button";
 
-
-
 import { Icons } from "../icons";
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export const Footer = ({ className, ...props }: ComponentProps<"div">) => {
     return (

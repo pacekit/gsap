@@ -8,10 +8,3 @@ export type ShadcnRegistryItem = RegistryItem & {
 export type DataRegistry = ShadcnRegistryItem & {
     demoPath: string;
 };
-
-export type GeneratedRegistry = {
-    name: string;
-    title: string;
-    description: string;
-    paths: string[];
-};

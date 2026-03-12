@@ -3,74 +3,27 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { ReactNode } from "react";
 
-
-
 import { Analytics } from "@vercel/analytics/react";
 import { RootProvider } from "fumadocs-ui/provider/tanstack";
 import { ThemeProvider } from "next-themes";
 
-
+import { getCombinedSchema } from "@/features/seo/config";
+import { getHeadMeta } from "@/features/seo/meta";
 
 import { Toaster } from "@/components/ui/sonner";
 
-
-
 import appCss from "@/styles/globals.css?url";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export const Route = createRootRoute({
     head: () => ({
-        meta: [
-            {
-                name: "viewport",
-                content: "width=device-width, initial-scale=1",
-            },
-        ],
-        links: [
-            {
-                rel: "stylesheet",
-                href: appCss,
-            },
-        ],
+        ...getHeadMeta({
+            links: [
+                {
+                    rel: "stylesheet",
+                    href: appCss,
+                },
+            ],
+        }),
     }),
     shellComponent: RootDocument,
 });
@@ -99,6 +52,10 @@ function RootDocument({ children }: { children: ReactNode }) {
         <html lang="en" suppressHydrationWarning>
             <head>
                 <HeadContent />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(getCombinedSchema()) }}
+                />
             </head>
             <body suppressHydrationWarning>
                 <Providers>{children}</Providers>

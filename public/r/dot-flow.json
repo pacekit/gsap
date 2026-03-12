@@ -1,0 +1,16 @@
+{
+    "name": "dot-flow",
+    "title": "Dot Flow",
+    "description": "Visually expressive status updates with animated dots and smooth sliding text transitions.",
+    "type": "registry:ui",
+    "dependencies": ["gsap", "@gsap/react"],
+    "registryDependencies": ["@pacekit-gsap/dot-loader"],
+    "files": [
+        {
+            "path": "components/gsap/dot-flow.tsx",
+            "type": "registry:ui",
+            "target": "~/components/gsap/dot-flow.tsx",
+            "content": "\"use client\";\n\nimport { useEffect, useRef, useState } from \"react\";\n\nimport { useGSAP } from \"@gsap/react\";\nimport gsap from \"gsap\";\n\nimport { DotLoader } from \"@/components/gsap/dot-loader\";\n\nexport type DotFlowProps = {\n    items: {\n        title: string;\n        frames: number[][];\n        duration?: number;\n        repeatCount?: number;\n    }[];\n    isPlaying?: boolean;\n};\n\nexport const DotFlow = ({ items, isPlaying = true }: DotFlowProps) => {\n    const containerRef = useRef<HTMLDivElement>(null);\n    const textRef = useRef<HTMLDivElement>(null);\n    const [index, setIndex] = useState(0);\n    const [textIndex, setTextIndex] = useState(0);\n\n    const { contextSafe } = useGSAP();\n\n    useEffect(() => {\n        if (!containerRef.current || !textRef.current) return;\n\n        const newWidth = textRef.current.offsetWidth + 1;\n\n        gsap.to(containerRef.current, {\n            width: newWidth,\n            duration: 0.5,\n            ease: \"power2.out\",\n        });\n    }, [textIndex, items]);\n\n    useEffect(() => {\n        setIndex(0);\n        setTextIndex(0);\n    }, [items]);\n\n    const next = contextSafe(() => {\n        const el = containerRef.current;\n        if (!el) return;\n        gsap.to(el, {\n            y: 20,\n            opacity: 0,\n            filter: \"blur(8px)\",\n            duration: 0.5,\n            ease: \"power2.in\",\n            onComplete: () => {\n                setTextIndex((prev) => (prev + 1) % items.length);\n                gsap.fromTo(\n                    el,\n                    { y: -20, opacity: 0, filter: \"blur(4px)\" },\n                    {\n                        y: 0,\n                        opacity: 1,\n                        filter: \"blur(0px)\",\n                        duration: 0.7,\n                        ease: \"power2.out\",\n                    },\n                );\n            },\n        });\n\n        setIndex((prev) => (prev + 1) % items.length);\n    });\n\n    return (\n        <div className=\"flex items-center gap-4 rounded bg-black px-4 py-3\">\n            <DotLoader\n                frames={items[index]?.frames ?? []}\n                onComplete={next}\n                className=\"gap-px\"\n                isPlaying={isPlaying}\n                repeatCount={items[index]?.repeatCount ?? 1}\n                duration={items[index]?.duration ?? 150}\n                dotClassName=\"bg-white/15 [&.active]:bg-white size-1\"\n            />\n            <div ref={containerRef} className=\"relative\">\n                <div ref={textRef} className=\"inline-block text-lg font-medium whitespace-nowrap text-white\">\n                    {items[textIndex]?.title}\n                </div>\n            </div>\n        </div>\n    );\n};\n"
+        }
+    ]
+}

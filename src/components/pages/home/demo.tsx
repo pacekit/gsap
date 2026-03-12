@@ -3,15 +3,9 @@
 import { Link } from "@tanstack/react-router";
 import { ReactNode, useState } from "react";
 
-
-
 import { ArrowRightIcon, EyeIcon, RotateCcwIcon } from "lucide-react";
 
-
-
 import { Button } from "@/components/ui/button";
-
-
 
 import { DrawLineDemo } from "./demos/draw-line-demo";
 // import { FlipRevealDemo } from "./demos/flip-reveal-demo";
@@ -19,24 +13,6 @@ import { MouseWaveDemo } from "./demos/mouse-wave-demo";
 import { ScrambleDemo } from "./demos/scramble-demo";
 import { SquashDemo } from "./demos/squash-demo";
 import { StaggerDemo } from "./demos/stagger-demo-demo";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const demos = [
     // {
@@ -76,6 +52,7 @@ const ShowDemo = ({ demo: Demo, href }: { demo: () => ReactNode; href: string })
                     variant="ghost"
                     size="icon"
                     className="cursor-pointer"
+                    nativeButton={false}
                     render={
                         <Link to={href}>
                             <EyeIcon className="size-5!" />
@@ -108,8 +85,9 @@ export const Demo = () => {
             <div className="mt-4 flex items-center justify-center sm:mt-8 xl:mt-12">
                 <Button
                     size="lg"
+                    nativeButton={false}
                     render={
-                        <Link to={"/docs/components" as string}>
+                        <Link to={"/docs/components/ai-modal-selector" as string}>
                             <span className="text-lg tracking-tight">Explore components</span>
                             <ArrowRightIcon />
                         </Link>

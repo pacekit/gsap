@@ -1,0 +1,15 @@
+{
+    "name": "scramble-text",
+    "title": "Scramble Text",
+    "description": "A hover-triggered text effect that scrambles and restores characters with smooth motion",
+    "type": "registry:ui",
+    "dependencies": ["gsap", "@gsap/react"],
+    "files": [
+        {
+            "path": "components/gsap/scramble-text.tsx",
+            "type": "registry:ui",
+            "target": "~/components/gsap/scramble-text.tsx",
+            "content": "\"use client\";\n\nimport { ComponentProps, useEffect, useRef } from \"react\";\n\nimport { useGSAP } from \"@gsap/react\";\nimport gsap from \"gsap\";\nimport { ScrambleTextPlugin } from \"gsap/ScrambleTextPlugin\";\n\ngsap.registerPlugin(ScrambleTextPlugin);\n\ntype ScrambleTextProps = {\n    random?: boolean;\n    scrambleOnLoad?: boolean;\n} & ComponentProps<\"div\">;\n\nconst defaultChars = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\";\n\nexport const ScrambleText = ({ scrambleOnLoad = true, random = true, ...props }: ScrambleTextProps) => {\n    const wrapperRef = useRef<HTMLDivElement | null>(null);\n\n    const { contextSafe } = useGSAP();\n\n    const scramble = contextSafe(() => {\n        const target = wrapperRef.current;\n        if (gsap.isTweening(target) || !target) return;\n        gsap.to(target, {\n            duration: 1,\n            ease: \"sine.in\",\n            scrambleText: {\n                text: target.innerText,\n                speed: 2,\n                chars: random ? defaultChars : target.innerText.replace(/\\s/g, \"\"),\n            },\n        });\n    });\n\n    useEffect(() => {\n        if (scrambleOnLoad) scramble();\n        const target = wrapperRef.current;\n        target?.addEventListener(\"pointerenter\", scramble);\n        return () => target?.removeEventListener(\"pointerenter\", scramble);\n    }, [wrapperRef, scramble, scrambleOnLoad]);\n\n    return <div {...props} ref={wrapperRef} />;\n};\n"
+        }
+    ]
+}
