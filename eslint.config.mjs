@@ -4,7 +4,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 
 const eslintConfig = defineConfig([
     ...tanstackConfig,
-    globalIgnores(["out/**", "build/**", "next-env.d.ts", ".source/**", ".output/**", "scripts/**"]),
+    globalIgnores(["out/**", "build/**", "next-env.d.ts", ".source/**", ".output/**", "scripts/**", ".vercel/**"]),
     {
         rules: {
             "@typescript-eslint/array-type": "off",

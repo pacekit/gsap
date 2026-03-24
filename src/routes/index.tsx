@@ -5,6 +5,7 @@ import { Feature } from "@/components/pages/home/feature";
 import { Hero } from "@/components/pages/home/hero";
 import { Footer } from "@/components/shared/layouts/footer";
 import { Topbar } from "@/components/shared/layouts/topbar";
+import { Newsletter } from "@/components/shared/newsletter";
 
 export const Route = createFileRoute("/")({
     component: RouteComponent,
@@ -36,6 +37,12 @@ function RouteComponent() {
                     <Hero />
                     <Feature />
                     <Demo />
+
+                    <div className="my-8 flex justify-center lg:my-12 2xl:my-20">
+                        <div className="max-w-lg">
+                            <Newsletter />
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="bg-background/90 sticky top-0 z-10 mt-8 border-t border-dashed xl:mt-16">

@@ -1,6 +1,5 @@
-import { Spinner } from "@/components/ui/spinner";
-
 import { FillableButton } from "@/components/gsap/fillable-button";
+import { Spinner } from "@/components/ui/spinner";
 
 export const Demo = () => {
     return (
